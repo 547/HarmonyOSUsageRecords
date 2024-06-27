@@ -630,4 +630,4 @@ h List all available interactive commands.
 c Clear the screen
 q Quit (terminate the application on the device).
 ```
-#### 上面输出 Flutter run key commands. 就说明已经在模拟器中跑起来了，同时也可以看到之前启动的模拟器已经打开我们的flutter项目了。
+#### 输出上面的内容，就说明已经在模拟器中跑起来了，同时也可以看到之前启动的模拟器已经打开我们的flutter项目了。
