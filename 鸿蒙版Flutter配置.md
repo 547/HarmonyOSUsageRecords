@@ -188,12 +188,10 @@ momo@momodeMac-mini Desktop %
 momo@momodeMac-mini Desktop % cd my_project
 # 发现可用设备
 momo@momodeMac-mini my_project % ohosFlutter devices
-5 connected devices:
+4 connected devices:
 
 127.0.0.1:5555 (mobile)      • 127.0.0.1:5555                           • ohos-arm64
 • Ohos OpenHarmony-5.0.0.25 (API 12)
-Seven Wang's iPhone (mobile) • f5ddc9eca19d12a504ca77f3251c06aee370286c • ios
-• iOS 15.2 19C56
 iPhone 14 Pro Max (mobile)   • DB69DB93-982C-4244-8B83-BD57BA6A8B23     • ios
 • com.apple.CoreSimulator.SimRuntime.iOS-16-4 (simulator)
 macOS (desktop)              • macos                                    •
@@ -201,7 +199,7 @@ darwin-arm64   • macOS 13.4.1 22F770820d darwin-arm64 (Rosetta)
 Chrome (web)                 • chrome                                   •
 web-javascript • Google Chrome 126.0.6478.127
 ```
-#### 上面可以看出我这有5个可用的设备，其中 127.0.0.1:5555 就是 鸿蒙的设备，下面开始运行到指定设备上
+#### 上面可以看出我这有4个可用的设备，其中 127.0.0.1:5555 就是 鸿蒙的设备，下面开始运行到指定设备上
 ```shell
 # 运行应用的指令： flutter run --release -d <device-id>
 momo@momodeMac-mini my_project % ohosFlutter run --release -d 127.0.0.1:5555
