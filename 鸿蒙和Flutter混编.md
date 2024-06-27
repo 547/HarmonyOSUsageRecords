@@ -1,14 +1,15 @@
 # mac m1 鸿蒙和Flutter混编
-#### [参考文档1](https://gitee.com/openharmony-sig/flutter_samples/blob/master/ohos/docs/03_environment/%E9%B8%BF%E8%92%99%E7%89%88Flutter%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%AF%BC.md#3%E4%B8%8B%E8%BD%BD%E9%B8%BF%E8%92%99%E7%89%88flutter)
-#### [参考文档2](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-creating-har-api9-0000001518082393)
+#### [参考文档1](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-creating-har-api9-0000001518082393)、[参考文档2](https://gitee.com/openharmony-sig/flutter_samples/blob/master/ohos/docs/04_development/%E5%BC%80%E5%8F%91module.md)
+## 写在前面
+### 1、本文的内容是基于已经配置好了鸿蒙版flutter的情况的，如还未配置请参考[mac m1 鸿蒙版flutter配置](https://github.com/547/HarmonyOSUsageRecords/blob/main/%E9%B8%BF%E8%92%99%E7%89%88Flutter%E9%85%8D%E7%BD%AE.md) 先行配置。
+### 2、本文使用的命令 ohosFlutter 是我为鸿蒙版flutter设置的别名，因为我还安装了官方的flutter，如只安装了鸿蒙版flutter，可以直接使用flutter。
+### 3、本文要混编的flutter模块是一个已有的旧模块，该模块之前支持的平台是iOS、Android，是和iOS、Android混编的。
+### 4、当前使用的是HarmonyOS NEXT Developer Beta1（5.0.3.403）、commandline-tools-mac-arm64-5.0.3.403 。
 
 ## 原理
 ### flutter和原生混编是将一个flutter模块/插件（Module）集成到原生项目里面，通过平台通道调用flutter模块中的功能。
-
-### 通过[文档](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-creating-har-api9-0000001518082393),可以看出鸿蒙是支持多模块的。主要使用方式是导入HAR(Harmony Archive， 即静态共享包）、HSP（Harmony Shared Package，即动态共享包）。
-
+### 通过[鸿蒙官方文档](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-creating-har-api9-0000001518082393),可以看出鸿蒙是支持多模块的。主要使用方式是导入HAR(Harmony Archive， 即静态共享包）、HSP（Harmony Shared Package，即动态共享包）。
 ### 同理，flutter模块想要集成到鸿蒙项目中就要编译成HAR或HSP。
-
 #### 注意：编译前先要让已有的flutter模块支持鸿蒙平台
 
 ```shell
@@ -16,8 +17,8 @@
 ohosFlutter config --enable-ohos
 ```
 
-### 一、编译成共享包
-#### 1. 编译成HAR
+## 一、编译成共享包
+### 1. 编译成HAR
 ```shell
 // 编译成har示例命令
 ohosFlutter build har --local-engine='/Users/momo/Library/Huawei/src/out/ohos_release_arm64' --release
