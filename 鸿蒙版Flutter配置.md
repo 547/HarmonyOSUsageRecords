@@ -14,7 +14,7 @@ git checkout dev
 ### 2、安装Command Line Tools
 #### 把下载好的Command Line Tools压缩包解压后放到和上面SDK安装的同级路径下（应该也可按自己喜好放，我是方便后面找和SDK放一块了）,最终绝对路径：/Users/xxxx/Library/OpenHarmony/command-line-tools
 ## 三、配置环境变量
-#### 注意：HarmonyOS NEXT Developer Beta1（5.0.3.403）因为将HarmonyOS SDK、Node.js、Hvigor、OHPM、模拟器平台等进行合一打包，所以和上面的参考文档有点区别。commandline-tools-mac-arm64-5.0.3.403里面已经没有sdkmanager了，所以关于sdkmanager的配置就不用管了。我们只要在.zshrc文件中配置关于HarmonyOS SDK和Command Line Tools、鸿蒙版flutter的环境变量即可，具体如下：
+#### 注意：HarmonyOS NEXT Developer Beta1（5.0.3.403）因为将HarmonyOS SDK、Node.js、Hvigor、OHPM、模拟器平台等进行合一打包，所以和上面的参考文档有点区别。commandline-tools-mac-arm64-5.0.3.403里面已经没有sdkmanager了，所以关于sdkmanager的配置就不用管了。我们只要在.zshrc文件中配置关于SDK和Command Line、鸿蒙版flutter的环境变量即可，具体如下：
 ```shell
 # flutter国内镜像
 export PUB_HOSTED_URL=https://pub.flutter-io.cn
@@ -24,9 +24,9 @@ export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 alias ohosFlutter='/Users/momo/Library/Huawei/flutter_flutter/bin/flutter'
 # 鸿蒙版flutter的bin目录
 export PATH=$PATH:/Users/momo/Library/Huawei/flutter_flutter/bin
-# commandline-tools-mac-arm64-5.0.3.403里面包含了HarmonyOS SDK
+# SDK目录
 export HOS_SDK_HOME=/Users/momo/Library/OpenHarmony/command-line-tools/sdk
-# commandline-tools-mac-arm64-5.0.3.403的 bin 子目录
+# commandline的 bin 子目录
 export PATH=$PATH:/Users/momo/Library/OpenHarmony/command-line-tools/bin
 #鸿蒙 END
 ```
