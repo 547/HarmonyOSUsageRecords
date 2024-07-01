@@ -261,10 +261,11 @@ Consuming the Module
 ```
 #### 添加完依赖后保存，然后同步一下点击文件上方出现的【Sync Now】按钮， 同步成功后oh_modules/@ohos文件夹中就会出现flutter_module文件夹。
 ### 3、使用flutter模块中功能
-#### 例1:我在项目中创建了一个flutter_intermediate模块，我要在这个模块中使用导入的flutter_module.har和flutter.har，就要在该模块的oh-package.json5文件中也添加依赖，大致如下：
+#### 例如:我要在entry模块中使用导入的flutter_module.har和flutter.har。
+#### 第一步：要在该模块的oh-package.json5文件中也添加依赖(添加完后记得也要同步一下)，大致如下：
 ```shell
 {
-  "name": "flutter_intermediate",
+  "name": "entry",
   "version": "1.0.0",
   "description": "Please describe the basic information.",
   "main": "",
@@ -276,6 +277,92 @@ Consuming the Module
   }
 }
 ```
-#### 添加完后记得也要同步一下
+#### 第二步：修改entry/src/main/ets/entryability/EntryAbility.ets文件，将EntryAbility改为继承FlutterAbility
+``` JavaScript
+import { FlutterAbility } from '@ohos/flutter_ohos'
 
+export default class EntryAbility extends FlutterAbility {
+}
+```
+#### 第三步：在entry/src/main/ets/pages 文件夹中创建一个flutter页面的原生容器文件：myFlutter.ets (文件名按自己喜好即可)
+``` JavaScript
+import { FlutterPage } from '@ohos/flutter_ohos';
+import Log from '@ohos/flutter_ohos/src/main/ets/util/Log';
+import FlutterEntry from '@ohos/flutter_ohos/src/main/ets/embedding/ohos/FlutterEntry';
+import { FlutterView } from '@ohos/flutter_ohos/src/main/ets/view/FlutterView';
+import router from '@ohos.router';
+@Entry
+@Component
+struct MyFlutter {
+  private flutterEntry: FlutterEntry | null = null;
+  private flutterView?: FlutterView
+
+  aboutToAppear() {
+    Log.d("Flutter", "Index aboutToAppear===");
+    // router.getParams()，根据router传进的参数构建FlutterEntry，参数要包含指定的flutter页面的路由。
+    this.flutterEntry = new FlutterEntry(getContext(this), router.getParams() as Record<string, Object>)
+    this.flutterEntry.aboutToAppear()
+    this.flutterView = this.flutterEntry.getFlutterView()
+    this.flutterView.addFirstFrameListener(this)
+  }
+
+  onFirstFrame() {
+
+  }
+
+  aboutToDisappear() {
+    Log.d("Flutter", "Index aboutToDisappear===");
+    this.flutterEntry?.aboutToDisappear()
+  }
+
+  onPageShow() {
+    Log.d("Flutter", "Index onPageShow===");
+    this.flutterEntry?.onPageShow()
+  }
+
+  onPageHide() {
+    Log.d("Flutter", "Index onPageHide===");
+    this.flutterEntry?.onPageHide()
+  }
+  build() {
+    Stack() {
+      FlutterPage({ viewId: this.flutterView?.getId() })
+      Button('返回')
+        .onClick(() => {
+          try {
+            router.back()
+          } catch (err) {
+            Log.d("Flutter", "返回 error ===" + JSON.stringify(err));
+          }
+        })
+    }
+  }
+}
+```
+#### 第四步：添加进入myFlutter的入口，我在index.ets中添加了一个按钮作为入口，代码如下：
+``` JavaScript
+import { router } from '@kit.ArkUI';
+import Log from '@ohos/flutter_ohos/src/main/ets/util/Log';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    RelativeContainer() {
+      Button('跳转flutter页面').onClick((event: ClickEvent) => {
+        try {
+          // params：{ route: '/testDemo' } 中route是指flutter页面在flutter模块中的路由，想要进入到哪个flutter页面就传哪个页面的路由
+          router.pushUrl({ url: 'pages/myFlutter', params: { route: '/testDemo' } })
+        } catch (err) {
+          Log.d("Flutter", "跳转flutter页面 error ===" + JSON.stringify(err));
+        }
+      }).height('30%')
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+### 以上就是，鸿蒙和flutter混编的简单总结。如有错漏，请不吝赐教。
 
