@@ -282,6 +282,9 @@ Consuming the Module
 import { FlutterAbility } from '@ohos/flutter_ohos'
 
 export default class EntryAbility extends FlutterAbility {
+  configureFlutterEngine(flutterEngine: FlutterEngine): void {
+    super.configureFlutterEngine(flutterEngine);
+  }
 }
 ```
 #### 第三步：在entry/src/main/ets/pages 文件夹中创建一个flutter页面的原生容器文件：myFlutter.ets (文件名按自己喜好即可)
