@@ -284,6 +284,7 @@ import { FlutterAbility } from '@ohos/flutter_ohos'
 export default class EntryAbility extends FlutterAbility {
   configureFlutterEngine(flutterEngine: FlutterEngine): void {
     super.configureFlutterEngine(flutterEngine);
+    GeneratedPluginRegistrant.registerWith(flutterEngine);
   }
 }
 ```
