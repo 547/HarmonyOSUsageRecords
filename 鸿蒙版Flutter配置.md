@@ -2,19 +2,20 @@
 #### [参考文档](https://gitee.com/openharmony-sig/flutter_samples/blob/master/ohos/docs/03_environment/%E9%B8%BF%E8%92%99%E7%89%88Flutter%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%AF%BC.md#3%E4%B8%8B%E8%BD%BD%E9%B8%BF%E8%92%99%E7%89%88flutter)
 
 ## 一、下载
-#### 1.官方提供的开发工具下载链接：[https://developer.huawei.com/consumer/cn/download/](https://developer.huawei.com/consumer/cn/download/)，至少要下载DevEco Studio、Command Line Tools，其他的可以按自己需求。
+#### 1.官方提供的开发工具下载链接：[https://developer.huawei.com/consumer/cn/download/](https://developer.huawei.com/consumer/cn/download/)，至少要下载DevEco Studio、~~Command Line Tools~~（新版本的DevEco Studio内部已经包含了Command Line Tools，可以不用而外下载），其他的可以按自己需求。
 #### 2.下载鸿蒙版flutter，项目地址：[https://gitee.com/openharmony-sig/flutter_flutter](https://gitee.com/openharmony-sig/flutter_flutter)（dev的代码比较新，我使用的是dev分支的）
 ```shell
 git clone https://gitee.com/openharmony-sig/flutter_flutter.git
 git checkout dev
 ```
 ## 二、安装（mac 安装DevEco Studio挺简单的，就和平常安装其他的软件一样，这边就不多赘诉了。）
-### 1、安装SDK 
-#### 安装好DevEco Studio后，打开DevEco Studio，进入到设置【Preferences】，点击 【OpenHarmony SDK】, 然后点击OpenHarmony SDK安装位置右边的【编辑】按钮下载最新的SDK，然后一路 【下一步】，等下载完点 【完成】 就可以了。（安装完SDK，回到 OpenHarmony SDK页面，可以看到 OpenHarmony SDK安装位置已经填充上SDK的绝对路径（/Users/xxxx/Library/OpenHarmony/Sdk）了。）OpenHarmony SDK页面，有一个不同版本的API表格，也可以根据自己的需求勾选并下载安装，安装完成，点击 【确认】 即可。
-### 2、安装Command Line Tools
-#### 把下载好的Command Line Tools压缩包解压后放到和上面SDK安装的同级路径下（应该也可按自己喜好放，我是方便后面找和SDK放一块了）,最终绝对路径：/Users/xxxx/Library/OpenHarmony/command-line-tools
+### 因为新版的DevEco Studio内部已经包含了SDK和Command Line Tools，不用再进行下面两步。
+### ~~1、安装SDK ~~
+#### ~~安装好DevEco Studio后，打开DevEco Studio，进入到设置【Preferences】，点击 【OpenHarmony SDK】, 然后点击OpenHarmony SDK安装位置右边的【编辑】按钮下载最新的SDK，然后一路 【下一步】，等下载完点 【完成】 就可以了。（安装完SDK，回到 OpenHarmony SDK页面，可以看到 OpenHarmony SDK安装位置已经填充上SDK的绝对路径（/Users/xxxx/Library/OpenHarmony/Sdk）了。）OpenHarmony SDK页面，有一个不同版本的API表格，也可以根据自己的需求勾选并下载安装，安装完成，点击 【确认】 即可~~。
+### ~~2、安装Command Line Tools~~
+#### ~~把下载好的Command Line Tools压缩包解压后放到和上面SDK安装的同级路径下（应该也可按自己喜好放，我是方便后面找和SDK放一块了）,最终绝对路径：/Users/xxxx/Library/OpenHarmony/command-line-tools~~
 ## 三、配置环境变量
-#### 注意：HarmonyOS NEXT Developer Beta1（5.0.3.403）因为将HarmonyOS SDK、Node.js、Hvigor、OHPM、模拟器平台等进行合一打包，所以和上面的参考文档有点区别。commandline-tools-mac-arm64-5.0.3.403里面已经没有sdkmanager了，所以关于sdkmanager的配置就不用管了。我们只要在.zshrc文件中配置关于SDK和Command Line、鸿蒙版flutter的环境变量即可，具体如下：
+#### 注意：新版本的DevEco Studio将HarmonyOS SDK、Node.js、Hvigor、OHPM、模拟器平台等进行合一打包（mac的话在DevEco Studio的包内容里），所以和上面的参考文档有点区别。commandline-tools-mac-arm64-5.0.3.403里面已经没有sdkmanager了，所以关于sdkmanager的配置就不用管了。我们只要在.zshrc文件中配置关于SDK和Command Line、鸿蒙版flutter的环境变量即可，具体如下：
 ```shell
 # flutter国内镜像
 export PUB_HOSTED_URL=https://pub.flutter-io.cn
@@ -25,9 +26,12 @@ alias ohosFlutter='/Users/momo/Library/Huawei/flutter_flutter/bin/flutter'
 # 鸿蒙版flutter的bin目录
 export PATH=$PATH:/Users/momo/Library/Huawei/flutter_flutter/bin
 # SDK目录
-export HOS_SDK_HOME=/Users/momo/Library/OpenHarmony/command-line-tools/sdk
-# commandline的 bin 子目录
-export PATH=$PATH:/Users/momo/Library/OpenHarmony/command-line-tools/bin
+export HOS_SDK_HOME=/Applications/DevEco-Studio.app/Contents/sdk
+# tools文件夹里面的就是commandline
+# hvigor的bin目录
+export PATH=$PATH:/Applications/DevEco-Studio.app/Contents/tools/hvigor/bin
+# ohpm的bin目录
+export PATH=$PATH:/Applications/DevEco-Studio.app/Contents/tools/ohpm/bin
 #鸿蒙 END
 ```
 #### 以上保存成功后，打开终端运行 source ~/.zshrc
