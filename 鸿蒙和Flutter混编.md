@@ -295,6 +295,7 @@ import Log from '@ohos/flutter_ohos/src/main/ets/util/Log';
 import FlutterEntry from '@ohos/flutter_ohos/src/main/ets/embedding/ohos/FlutterEntry';
 import { FlutterView } from '@ohos/flutter_ohos/src/main/ets/view/FlutterView';
 import router from '@ohos.router';
+import { GeneratedPluginRegistrant } from '@ohos/flutter_module';
 @Entry
 @Component
 struct MyFlutter {
@@ -321,6 +322,10 @@ struct MyFlutter {
 
   onPageShow() {
     Log.d("Flutter", "Index onPageShow===");
+    if (this.flutterEntry?.getFlutterEngine() != null) {
+      // 用FlutterEntry要用flutterEntry的FlutterEngine再注册一次插件
+      GeneratedPluginRegistrant.registerWith(this.flutterEntry?.getFlutterEngine());
+    }
     this.flutterEntry?.onPageShow()
   }
 
@@ -369,4 +374,12 @@ struct Index {
 }
 ```
 ### 以上就是，鸿蒙和flutter混编的简单总结。如有错漏，请不吝赐教。
-
+## 三、补充
+### 为了方便flutter module 和鸿蒙工程调试、打包，避免每次更新完flutter的代码编译出har包后，再手动复制到鸿蒙工程中，可以将flutter module与鸿蒙工程联动，在flutter module的.ohos文件夹中建一个鸿蒙主工程的har文件夹的快捷方式：
+```shell
+# 删除flutter module原来的har文件夹，如果还没生成har文件夹就不用执行改指令
+rm -rf /Users/momo/Documents/GitHub/flutter-pin-module/.ohos/har
+# 创建har文件夹的快捷方式 (鸿蒙工程的har文件夹是本体)
+ln -s /Users/momo/Documents/GitHub/harmony-pin/har /Users/momo/Documents/GitHub/flutter-pin-module/.ohos/har
+```
+### 创建har文件夹快捷方式后，在flutter module修改Dart代码，然后执行flutter build har --release便可以更新鸿蒙工程的har文件夹。
