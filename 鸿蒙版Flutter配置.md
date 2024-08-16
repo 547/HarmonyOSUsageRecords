@@ -27,6 +27,7 @@ alias ohosFlutter='/Users/momo/Library/Huawei/flutter_flutter/bin/flutter'
 export PATH=$PATH:/Users/momo/Library/Huawei/flutter_flutter/bin
 # SDK目录
 export HOS_SDK_HOME=/Applications/DevEco-Studio.app/Contents/sdk
+export DEVECO_SDK_HOME=/Applications/DevEco-Studio.app/Contents/Sdk
 # tools文件夹里面的就是commandline
 # hvigor的bin目录
 export PATH=$PATH:/Applications/DevEco-Studio.app/Contents/tools/hvigor/bin
