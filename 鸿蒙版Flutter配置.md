@@ -10,7 +10,7 @@ git checkout dev
 ```
 ## 二、安装（mac 安装DevEco Studio挺简单的，就和平常安装其他的软件一样，这边就不多赘诉了。）
 ### 因为新版的DevEco Studio内部已经包含了SDK和Command Line Tools，不用再进行下面两步。
-### ~~1、安装SDK ~~
+### ~~1、安装SDK~~
 #### ~~安装好DevEco Studio后，打开DevEco Studio，进入到设置【Preferences】，点击 【OpenHarmony SDK】, 然后点击OpenHarmony SDK安装位置右边的【编辑】按钮下载最新的SDK，然后一路 【下一步】，等下载完点 【完成】 就可以了。（安装完SDK，回到 OpenHarmony SDK页面，可以看到 OpenHarmony SDK安装位置已经填充上SDK的绝对路径（/Users/xxxx/Library/OpenHarmony/Sdk）了。）OpenHarmony SDK页面，有一个不同版本的API表格，也可以根据自己的需求勾选并下载安装，安装完成，点击 【确认】 即可~~。
 ### ~~2、安装Command Line Tools~~
 #### ~~把下载好的Command Line Tools压缩包解压后放到和上面SDK安装的同级路径下（应该也可按自己喜好放，我是方便后面找和SDK放一块了）,最终绝对路径：/Users/xxxx/Library/OpenHarmony/command-line-tools~~
@@ -26,7 +26,6 @@ alias ohosFlutter='/Users/momo/Library/Huawei/flutter_flutter/bin/flutter'
 # 鸿蒙版flutter的bin目录
 export PATH=$PATH:/Users/momo/Library/Huawei/flutter_flutter/bin
 # SDK目录
-export HOS_SDK_HOME=/Applications/DevEco-Studio.app/Contents/sdk
 export DEVECO_SDK_HOME=/Applications/DevEco-Studio.app/Contents/Sdk
 # tools文件夹里面的就是commandline
 # hvigor的bin目录
